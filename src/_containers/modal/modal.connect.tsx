@@ -20,7 +20,7 @@ const ModalConnect = () => {
                     <p className="visually-hidden valldition">Metamask가 설치되지 않았습니다.</p>
                 </div>
                 <div>
-                    <button className="btn btn-light py-3" type="submit" onClick={() => dispatch(onConnectAction.request(parseInt(import.meta.env.VITE_APP_ETHEREUM_NETWORKID)))}>
+                    <button className="btn btn-light py-3" type="submit" disabled={true} onClick={() => dispatch(onConnectAction.request(parseInt(import.meta.env.VITE_APP_ETHEREUM_NETWORKID)))}>
                         <img src="/assets/img/ethereum.svg" width="20px" height="20px"/>&#160;&#160;Ethereum Network 메타마스크로 연결
                     </button>
                     <p className="visually-hidden valldition">Metamask가 설치되지 않았습니다.</p>
