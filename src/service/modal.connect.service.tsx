@@ -4,7 +4,7 @@ import {IWalletAuth} from "../type/_data/wallet.auth";
 import {post} from "../helper/axios-handler";
 import {WALLET_CONNECT_OPTION} from "../helper/network-handler";
 import {INetworkConnectInfo} from "../type/_data/network.type";
-import {provider} from "../helper/wallet.provider.ts";
+import {provider, requestAccount} from "../helper/wallet.provider.ts";
 
 
 export const onConnect = (networkId: number) => onConnectMetamask(networkId);
@@ -30,30 +30,25 @@ const onConnectKlaytn = async (networkId: number): Promise<IWalletAuth> => {
     return { networkId: networkId, address: window.klaytn.selectedAddress.toLowerCase(), sign: signedMessage };
 }
 
-async function requestAccount() {
-    try {
-        const accounts = await provider().request({
-            method: 'eth_requestAccounts',
-        });
-        return accounts[0];
-    } catch (error) {
-        console.error('User denied account access');
-        return null;
-    }
-}
+
 
 const onConnectMetamask = async (networkId: number): Promise<IWalletAuth> => {
     const account = await requestAccount();
-    console.log(account);
+    console.log("account:", account);
     // @ts-ignore
     await provider().enable();
+    console.log("enable complete");
     // @ts-ignore
     const web3 = new Web3(provider());
+    console.log("web3:", web3);
     const message = getMetamaskAuthMessage(networkId);
+    console.log("message:", message);
     // @ts-ignore
-    const address = provider().selectedAddress
+    const address = await requestAccount();
+    console.log("address:", address);
     // @ts-ignore
     const signedMessage = await provider().request({method: 'eth_signTypedData_v4', params: [address, message]})
+
     console.log(signedMessage);
 
     return { networkId: networkId, address: address.toLowerCase(), sign: signedMessage };
