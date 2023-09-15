@@ -73,7 +73,7 @@ export const WALLET_CONNECT_OPTION: INetworkConnect = {
         blockExplorerUrls: ['https://mumbai.ploygonscan.com']
     },
     137: {
-        chainId: `0x${(137).toString(16)}`,
+        chainId: `0x${(137).toString(16).toLowerCase()}`,
         chainName: 'Polygon Mainnet',
         nativeCurrency: {
             name: 'MATIC',
