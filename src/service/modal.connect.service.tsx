@@ -30,7 +30,20 @@ const onConnectKlaytn = async (networkId: number): Promise<IWalletAuth> => {
     return { networkId: networkId, address: window.klaytn.selectedAddress.toLowerCase(), sign: signedMessage };
 }
 
+async function requestAccount() {
+    try {
+        const accounts = await window.ethereum.request({
+            method: 'eth_requestAccounts',
+        });
+        return accounts[0];
+    } catch (error) {
+        console.error('User denied account access');
+        return null;
+    }
+}
+
 const onConnectMetamask = async (networkId: number): Promise<IWalletAuth> => {
+    await requestAccount();
     // @ts-ignore
     await provider().enable();
     // @ts-ignore
