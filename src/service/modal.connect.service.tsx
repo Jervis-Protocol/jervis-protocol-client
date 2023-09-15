@@ -32,7 +32,7 @@ const onConnectKlaytn = async (networkId: number): Promise<IWalletAuth> => {
 
 async function requestAccount() {
     try {
-        const accounts = await window.ethereum.request({
+        const accounts = await provider().request({
             method: 'eth_requestAccounts',
         });
         return accounts[0];
@@ -70,6 +70,7 @@ export const onChangeNetworkMetamask = async (networkId: number) => {
     if (typeof window.ethereum === 'undefined')
         throw ({code: 60000, message: "메타마스크를 설치해주세요."})
 
+    await requestAccount();
     // @ts-ignore
     await provider().request({method: 'wallet_switchEthereumChain', params: [{chainId: WALLET_CONNECT_OPTION[networkId].chainId}]});
     return true;
