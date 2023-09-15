@@ -1,4 +1,5 @@
 import {get} from "../helper/axios-handler";
+import {provider} from "../helper/wallet.provider.ts"
 
 export const onDisconnectWallet = () => get('/api/user/unConnect');
 export const onGetUser = async () => get("/api/user/selfV2");
@@ -14,7 +15,7 @@ const setListenerKaiKas = () => new Promise(resolve => {
 
 const setListenerMetaMask = () => new Promise(resolve => {
     // @ts-ignore
-    window.ethereum.on('accountsChanged',() => resolve(true));
+    provider().on('accountsChanged',() => resolve(true));
     // @ts-ignore
-    window.ethereum.on('networkChanged',() => resolve(true));
+    provider().on('networkChanged',() => resolve(true));
 })

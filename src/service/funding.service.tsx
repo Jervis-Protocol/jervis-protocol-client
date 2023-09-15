@@ -6,6 +6,7 @@ import {IHistory} from "../type/_data/history.type";
 import {INFT} from "../type/_data/nft.type";
 import Web3 from "web3";
 import bigDecimal from "js-big-decimal";
+import {provider} from "../helper/wallet.provider.ts"
 
 export const onGetFunding = (requestParam: IGetFundingRequest) => get(`/api/funding/get/${requestParam.networkId}/${requestParam.address}`).then( response => response.funding);
 export const onGetFundingNFT = (requestParam: IGetFundingRequest) => get(`/api/funding/nft/${requestParam.networkId}/${requestParam.address}`).then( nfts => nfts.map((nft: INFT) => {
@@ -48,9 +49,9 @@ const onSendDonationDefault = async (params: IDonationRequest) => {
     const {funding, abi, input} = params;
     await onChangeNetwork(params.funding.networkId);
     // @ts-ignore
-    await window.ethereum.enable();
+    await provider().enable();
     // @ts-ignore
-    const web3 = new Web3(window.ethereum);
+    const web3 = new Web3(provider());
     const contract = new web3.eth.Contract(abi as Array<AbiItem>, funding.address);
     const transaction = await contract.methods.donate(input.reward.index);
     const transactionOption = getTransactionOption(funding.networkId, input.value, funding.address);
@@ -65,6 +66,6 @@ const getTransactionOption = (networkId: number, value: number, to: string) => {
         value: Web3.utils.toWei(value.toString()),
         to: to,
         // @ts-ignore
-        from: window.ethereum.selectedAddress
+        from: provider().selectedAddress
     }
 }

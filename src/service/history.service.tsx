@@ -3,6 +3,7 @@ import {getTransactionOptions} from "./summary.service";
 import Web3 from "web3";
 import {AbiItem} from "web3-utils";
 import {post} from "../helper/axios-handler";
+import {provider} from "../helper/wallet.provider.ts";
 
 export const onUpdateReceiveHash = (params: IUpdateReceiveParam) => post("/api/funding/updateReceiveHash", params);
 // export const onFundingSubmit = (params: IFundingSubmit) => params.funding.networkId === parseInt(process.env.REACT_APP_KLAYTN_NETWORKID!) ? onSubmitKlaytn(params) : onSubmitDefault(params);
@@ -22,9 +23,9 @@ const onSubmitKlaytn = async (params: IFundingSubmit) => {
 
 const onSubmitDefault = async (params: IFundingSubmit) => {
     // @ts-ignore
-    await window.klaytn.enable();
+    await provider().enable();
     // @ts-ignore
-    const web3 = new Web3(window.ethereum);
+    const web3 = new Web3(provider());
     const funding = new web3.eth.Contract(params.abi as Array<AbiItem>, params.funding.address);
     const transaction = await funding.methods.withdraw();
     const transactionOption = getTransactionOptions(params.funding.networkId, params.funding.address);

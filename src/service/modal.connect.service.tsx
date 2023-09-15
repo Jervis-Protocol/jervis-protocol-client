@@ -4,6 +4,7 @@ import {IWalletAuth} from "../type/_data/wallet.auth";
 import {post} from "../helper/axios-handler";
 import {WALLET_CONNECT_OPTION} from "../helper/network-handler";
 import {INetworkConnectInfo} from "../type/_data/network.type";
+import {provider} from "../helper/wallet.provider.ts";
 
 
 export const onConnect = (networkId: number) => onConnectMetamask(networkId);
@@ -31,23 +32,22 @@ const onConnectKlaytn = async (networkId: number): Promise<IWalletAuth> => {
 
 const onConnectMetamask = async (networkId: number): Promise<IWalletAuth> => {
     // @ts-ignore
-    await window.ethereum.enable();
+    await provider().enable();
     // @ts-ignore
-    const web3 = new Web3(window.ethereum);
+    const web3 = new Web3(provider());
     const message = getMetamaskAuthMessage(networkId);
     // @ts-ignore
-    const address = window.ethereum.selectedAddress
+    const address = provider().selectedAddress
     // @ts-ignore
-    const signedMessage = await window.ethereum.request({method: 'eth_signTypedData_v4', params: [address, message]})
+    const signedMessage = await provider().request({method: 'eth_signTypedData_v4', params: [address, message]})
     console.log(signedMessage);
 
     return { networkId: networkId, address: address.toLowerCase(), sign: signedMessage };
 }
-
 export const onAddNetwork = async (networkId: number) => {
     const addOptions: INetworkConnectInfo  = WALLET_CONNECT_OPTION[networkId]
     // @ts-ignore
-    await window.ethereum.request({method: 'wallet_addEthereumChain', params: [addOptions]});
+    await provider().request({method: 'wallet_addEthereumChain', params: [addOptions]});
     return true;
 }
 
@@ -57,7 +57,7 @@ export const onChangeNetworkMetamask = async (networkId: number) => {
         throw ({code: 60000, message: "메타마스크를 설치해주세요."})
 
     // @ts-ignore
-    await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{chainId: WALLET_CONNECT_OPTION[networkId].chainId}]});
+    await provider().request({method: 'wallet_switchEthereumChain', params: [{chainId: WALLET_CONNECT_OPTION[networkId].chainId}]});
     return true;
 }
 
