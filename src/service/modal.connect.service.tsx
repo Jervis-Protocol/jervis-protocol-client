@@ -43,7 +43,8 @@ async function requestAccount() {
 }
 
 const onConnectMetamask = async (networkId: number): Promise<IWalletAuth> => {
-    await requestAccount();
+    const account = await requestAccount();
+    console.log(account);
     // @ts-ignore
     await provider().enable();
     // @ts-ignore
