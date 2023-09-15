@@ -64,7 +64,7 @@ const getNFTAmount = (nfts: Array<IInputNFT>): Array<number> => nfts.map(nft => 
 const getNFTURI = (nfts: Array<IInputNFT>): Array<string> => nfts.map(nft => nft.uri!);
 
 const parseToWei = (value: string) => parseInt(Web3.utils.toWei(new bigDecimal(value).getValue(), 'ether'));
-export const getTransactionOptions = (networkId: number, to: string, from: string) => {
+export const getTransactionOptions = (networkId: number, to: string, from?: string) => {
     switch (networkId) {
         case 1001:
         case 8217: return {
