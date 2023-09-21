@@ -15,14 +15,15 @@ const FundingHistoryComponent = () => {
     }
 
     return (
-        <div className="bg-white rounded-3 p-5 mt-5">
-            <h1>최근 펀딩 내역</h1>
+        <div className="mx-lg-0 mx-3">
+            <h4>최근 펀딩 내역</h4>
             <div className="mt-4">
                 <div className="row border-top border-bottom pt-3">
-                    <p className="col-6 col-md-3">펀딩 일시</p>
-                    <p className="col-6 col-md-3 text-center">펀딩 금액</p>
-                    <p className="col-12 col-md-6">발송 주소</p>
+                    <p className="col-6 col-md-2 col-xl-3">펀딩 일시</p>
+                    <p className="col-6 col-md-2 col-xl-2 text-md-center text-end">펀딩 금액</p>
+                    <p className="col-12 col-md-8 col-xl-7">발송 주소</p>
                 </div>
+
                 {
                     funding?.history.length === 0
                         ?   <div className={"text-center m-3"}>

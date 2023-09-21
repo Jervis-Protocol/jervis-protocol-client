@@ -13,6 +13,7 @@ import {RootState} from "../../reducers/root.reducer";
 import FundingDonation from "./funding.donation";
 import FundingBottomBar from "./funding.bottom.bar.tsx";
 import {onToggleLoadingAction} from "../../action/search.action.tsx";
+import FundingSticky from "./funding.sticky.tsx";
 
 const FundingContainer = () => {
     const {state} = useLocation();
@@ -29,20 +30,37 @@ const FundingContainer = () => {
         <>
             {
                 funding && nfts.length !== 0 &&
-                    <div style={{backgroundColor: "#F2F4F5"}}>
-                        <FundingBanner />
-                        <section className="position-relative d-flex justify-content-center mx-3 mx-lg-0" style={{paddingBottom: "10rem"}}>
-                            <div style={{maxWidth: "1000px"}}>
-                                <FundingInfo/>
-                                <FundingDescription/>
-                                <FundingStory/>
-                                <FundingNft/>
-                                <FundingHistory/>
+                <>
+                    <section className="position-relative mb-12">
+                        <div className="container position-relative">
+                            <div className="row">
+                                <div className="col-lg-8 col-xl-7 pt-0 pt-lg-8 order-lg-0 order-1">
+                                    <FundingInfo/>
+                                    <hr/>
+                                    <FundingStory/>
+                                    <FundingNft/>
+                                    <FundingHistory/>
+                                </div>
+                                <FundingSticky/>
                             </div>
-                        </section>
-                        <FundingBottomBar/>
-                        <FundingDonation nfts={nfts}/>
-                    </div>
+                        </div>
+                    </section>
+                    <FundingDonation nfts={nfts}/>
+                </>
+                    // <div style={{backgroundColor: "#F2F4F5"}}>
+                    //     <FundingBanner />
+                    //     <section className="position-relative d-flex justify-content-center mx-3 mx-lg-0" style={{paddingBottom: "10rem"}}>
+                    //         <div style={{maxWidth: "1000px"}}>
+                    //             {/*<FundingInfo/>*/}
+                    //             {/*<FundingDescription/>*/}
+                    //             <FundingStory/>
+                    //             <FundingNft/>
+                    //             <FundingHistory/>
+                    //         </div>
+                    //     </section>
+                    //     <FundingBottomBar/>
+                    //     <FundingDonation nfts={nfts}/>
+                    // </div>
             }
         </>
     )

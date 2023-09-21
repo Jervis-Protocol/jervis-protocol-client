@@ -4,8 +4,8 @@ import {RootState} from "../../reducers/root.reducer";
 const FundingStoryComponent = () => {
     const {story} = useSelector((state: RootState) => state.FundingReducer);
     return (
-        <div className="bg-white rounded-3 p-5 mt-5">
-            <h1>펀딩에 담긴 스토리</h1>
+        <div className="mb-6">
+            <h4 className="mt-6 mb-4">펀딩 스토리</h4>
             <div dangerouslySetInnerHTML={{ __html: story}} ></div>
         </div>
     )

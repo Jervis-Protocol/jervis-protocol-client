@@ -12,9 +12,9 @@ const FundingHistoryPage = () => {
     }, [])
 
     return (
-        <div className="text-center g-font-size-15">
+        <div className="text-center mt-3">
             <i className="bi bi-chevron-left"></i>
-            { pages.map( index => <a key={index} href="#" className={historyPage === index ? "g-color-black active" : "g-color-black"} onClick={() => onChangeHistoryPageAction(index)}>{index}</a>)}
+            { pages.map( index => <a key={index} href="#" className={historyPage === index ? "text-black active" : "text-black"} onClick={() => onChangeHistoryPageAction(index)}>{index}</a>)}
             <i className="bi bi-chevron-right"></i>
         </div>
     )

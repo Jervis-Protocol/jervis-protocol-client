@@ -57,24 +57,33 @@ import {onToggleDonationModalAction} from "../../action/funding.action";
 //     )
 // }
 
-const FundingInfoComponent = () => {
-    const {state} = useLocation();
-    const {funding} = useSelector((state: RootState) => state.FundingReducer);
-    const {user} = useSelector((state: RootState) => state.HeaderReducer);
-    const getDate = (sDate: Date, eDate: Date) => {
-        const newSDate = new Date(sDate);
-        const newEDate = new Date(eDate);
-        return `${newSDate.getFullYear()}.${newSDate.getMonth()+1}.${newSDate.getDate()} ~ ${newEDate.getFullYear()}.${newEDate.getMonth()+1}.${newEDate.getDate()}`
-    }
+// const FundingInfoComponent = () => {
+//     const {state} = useLocation();
+//     const {funding} = useSelector((state: RootState) => state.FundingReducer);
+//     const {user} = useSelector((state: RootState) => state.HeaderReducer);
+//     const getDate = (sDate: Date, eDate: Date) => {
+//         const newSDate = new Date(sDate);
+//         const newEDate = new Date(eDate);
+//         return `${newSDate.getFullYear()}.${newSDate.getMonth()+1}.${newSDate.getDate()} ~ ${newEDate.getFullYear()}.${newEDate.getMonth()+1}.${newEDate.getDate()}`
+//     }
+//
+//     return (
+//         <div className="bg-white rounded-3 p-5 mt-2">
+//             <h2>펀딩 정보</h2>
+//             <div className="mt-4 lh-sm">
+//                 <p>목표 금액 : {funding!.goal} {networkInfo[state.networkId].symbol}</p>
+//                 <p>펀딩 기간 : {getDate(funding!.sdate, funding!.edate)}</p>
+//                 <p>펀딩 타입 : {funding!.type === 12001 ? "목표달성" : "기간달성"}</p>
+//             </div>
+//         </div>
+//     )
+// }
 
+const FundingInfoComponent = () => {
+    const {funding} = useSelector((state: RootState) => state.FundingReducer);
     return (
-        <div className="bg-white rounded-3 p-5 mt-2">
-            <h2>펀딩 정보</h2>
-            <div className="mt-4 lh-sm">
-                <p>목표 금액 : {funding!.goal} {networkInfo[state.networkId].symbol}</p>
-                <p>펀딩 기간 : {getDate(funding!.sdate, funding!.edate)}</p>
-                <p>펀딩 타입 : {funding!.type === 12001 ? "목표달성" : "기간달성"}</p>
-            </div>
+        <div className="position-relative mt-11 mb-7" style={{width: '100%', paddingBottom: '65%'}}>
+            <img className="position-absolute rounded-4 w-100 h-100" src={funding?.background} alt="" />
         </div>
     )
 }
