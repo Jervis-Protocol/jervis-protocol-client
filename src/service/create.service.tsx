@@ -1,7 +1,9 @@
-import {upload} from "../helper/axios-handler";
+import {nftUpload, upload} from "../helper/axios-handler";
 import {IInputFunding} from "../type/_data/funding.type";
 
 export const fileUpload = (file: File) => upload(file);
+export const nftImageUpload = (file: File) => nftUpload(file);
+
 export const validationInput = (input: IInputFunding) => input.title &&
 input.description &&
 input.type &&

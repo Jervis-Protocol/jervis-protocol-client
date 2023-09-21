@@ -1,5 +1,5 @@
 import {IDonationInput, IDonationRequest, IGetFundingRequest} from "../type/_container/funding.type";
-import {get, post} from "../helper/axios-handler";
+import {get, getStory, post} from "../helper/axios-handler";
 import {onChangeNetwork} from "./modal.connect.service";
 import {AbiItem} from "web3-utils";
 import {IHistory} from "../type/_data/history.type";
@@ -13,7 +13,7 @@ export const onGetFundingNFT = (requestParam: IGetFundingRequest) => get(`/api/f
     nft.price = parseFloat(Web3.utils.fromWei(new bigDecimal(nft.price).getValue(), 'ether'));
     return nft
 }));
-export const onGetFundingStory = (storyURL: string) => post(`/api/funding/getStory`, { story: storyURL });
+export const onGetFundingStory = (storyURL: string) => getStory(storyURL);
 
 export const onSubmitDonationInput = (input: IDonationInput) => {
     if (input.agree !== true)
