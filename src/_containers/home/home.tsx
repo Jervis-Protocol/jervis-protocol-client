@@ -10,8 +10,6 @@ import {useEffect} from "react";
 import {onGetMainFundingAction, onGetPopularFundingAction, onGetTodoFundingAction} from "../../action/home.action";
 
 const HomeContainer = () => {
-    useScript('/assets/js/home.js');
-
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(onGetMainFundingAction.request());
