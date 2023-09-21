@@ -3,9 +3,11 @@ import HomePopularSwiper from "./home.popular.swiper";
 import HomePopularNavi from "./home.popular.navi";
 import {useSelector} from "react-redux";
 import {RootState} from "../../reducers/root.reducer";
+import useScript from "../../helper/useScript.tsx";
 
 const HomePopularComponent = () => {
     const { popularFunding } = useSelector((state: RootState) => state.HomeReducer);
+    useScript("/assets/js/home.js");
 
     return (
         <section className="position-relative">
