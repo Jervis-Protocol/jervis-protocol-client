@@ -28,13 +28,8 @@ const FundingDonationReward = (state: IFundingDonationModalState) => {
                                autoComplete="off"
                                // onChange={() => dispatch(onSelectRewardAction(dummyNFT))}
                                checked={reward.index === 0}/>
-                        <label className="btn p-0 w-100 h-100 rounded-2" htmlFor="funding-reward-none">
-                            <div className="position-relative overflow-hidden" style={{width: "220px", height: "220px"}}>
-                                <button type="button"
-                                        className="rounded-2 w-100 h-100 position-absolute fs-4"
-                                        style={{top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}
-                                        onClick={() => dispatch(onSelectRewardAction(dummyNFT))}>선택 안함</button>
-                            </div>
+                        <label className="btn p-0 w-100 h-100 bg-style-2 rounded-2" htmlFor="type-target1">
+                            <p className="fs-4 mt-lg-10 mt-md-6 mt-5" onClick={() => dispatch(onSelectRewardAction(dummyNFT))}>선택 안함</p>
                         </label>
                     </td>
                     {
@@ -50,9 +45,7 @@ const FundingDonationReward = (state: IFundingDonationModalState) => {
                                            onChange={() => dispatch(onSelectRewardAction({index: nft.index!, price: nft.price }))}
                                            checked={reward.index === nft.index}/>
                                     <label className="btn p-0 jb-hover" htmlFor={`funding-reward-${nft.index}`}>
-                                        <div className="position-relative overflow-hidden" style={{width: "220px", height: "220px"}}>
-                                            <img className="rounded-2 w-100 h-100 position-absolute" src={nft.image} style={{top: "50%", left: "50%", transform: "translate(-50%, -50%"}}/>
-                                        </div>
+                                        <img className={"w-100 rounded-2"} src={nft.image} alt=""/>
                                         <div className="jb-text rounded-2">
                                             <h5 style={{position: 'relative', top: '50%', transform: 'translateY(-50%)', color: '#fff'}}>
                                                 Amount : {nft.price} {networkInfo[funding!.networkId].symbol}<br/>
