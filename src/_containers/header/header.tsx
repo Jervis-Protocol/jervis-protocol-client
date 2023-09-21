@@ -10,10 +10,10 @@ import HeaderConnect from "./header.connect";
 
 const HeaderComponent = () => {
     useScript("/assets/js/theme.bundle.js", false);
-    useScript("/assets/vendor/node_modules/js/swiper-bundle.min.js", false);
-    useScript("/assets/vendor/node_modules/js/choices.min.js");
-    useScript("/assets/vendor/node_modules/js/jquery.min.js");
-    useScript("/assets/vendor/node_modules/js/jquery.countdown.min.js");
+    useScript("/assets/vendor/lib/js/swiper-bundle.min.js", false);
+    useScript("/assets/vendor/lib/js/choices.min.js");
+    useScript("/assets/vendor/lib/js/jquery.min.js");
+    useScript("/assets/vendor/lib/js/jquery.countdown.min.js");
     const dispatch = useDispatch();
     const {user} = useSelector((state: RootState) => state.HeaderReducer);
 

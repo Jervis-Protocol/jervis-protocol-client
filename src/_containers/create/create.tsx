@@ -6,11 +6,11 @@ import {RootState} from "../../reducers/root.reducer";
 const CreateContainer = () => {
     const {user} = useSelector((state: RootState) => state.HeaderReducer);
     // useScript("https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js",false);
-    // useScript("/assets/vendor/node_modules/js/jquery.min.js", false);
-    // useScript("/assets/vendor/node_modules/js/swiper-bundle.min.js", false);
-    // useScript("/assets/vendor/node_modules/js/choices.min.js", false);
-    // useScript("/assets/vendor/node_modules/js/jquery.countdown.min.js", false);
-    // useScript("assets/vendor/node_modules/js/jquery.validate.min.js", false);
+    // useScript("/assets/vendor/lib/js/jquery.min.js", false);
+    // useScript("/assets/vendor/lib/js/swiper-bundle.min.js", false);
+    // useScript("/assets/vendor/lib/js/choices.min.js", false);
+    // useScript("/assets/vendor/lib/js/jquery.countdown.min.js", false);
+    // useScript("assets/vendor/lib/js/jquery.validate.min.js", false);
     // useScript("/assets/vendor/summernote/summernote-lite.js");
     // useScript("/assets/vendor/summernote/summernote-ko-KR.js");
 

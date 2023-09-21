@@ -7,7 +7,7 @@ import useScript from "../../helper/useScript";
 
 const SearchBoardComponent = () => {
     const {fundingList,isLoading} = useSelector((state: RootState) => state.SearchReducer);
-    useScript("/assets/vendor/node_modules/js/choices.min.js", false);
+    useScript("/assets/vendor/lib/js/choices.min.js", false);
     useScript("/assets/js/search.js")
     return (
         <div className="col-lg-8 col-xl-9 h-100 pt-lg-8 pb-5">
