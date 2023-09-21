@@ -1,7 +1,7 @@
 import axios from "axios";
 import {ResponseType} from "../type/_data/response.type";
 
-const rootUrl = import.meta.env.VITE_APP_NODE_ENV === "production" ? "http://testnet.keedari.com" : ""
+const rootUrl = import.meta.env.VITE_ROOT_URL;
 
 
 export const get = async (url: string): Promise<any> => {

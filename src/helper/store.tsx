@@ -15,10 +15,9 @@ const loggerMiddleware = createLogger();
 //     storage,
 // }
 // const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 const store = configureStore({
     reducer: rootReducer,
-    middleware: new MiddlewareArray().concat(sagaMiddleware, loggerMiddleware),
+    middleware: import.meta.env.VITE_APP_NODE_ENV === 'production' ? new MiddlewareArray().concat(sagaMiddleware) : new MiddlewareArray().concat(sagaMiddleware, loggerMiddleware),
 });
 
 sagaMiddleware.run(rootSaga);
