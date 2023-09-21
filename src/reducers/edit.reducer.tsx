@@ -19,7 +19,6 @@ const EditReducer = createReducer<IEditState, IEditAction>(initialState, {
     [ON_CHANGE_NICKNAME_SUCCESS]: (state, action) => ({
         ...state,
         nickname: action.payload.input,
-        nicknameValid: action.payload.error
     }),
     [ON_CHANGE_DESCRIPTION]: (state, action) => ({
         ...state,

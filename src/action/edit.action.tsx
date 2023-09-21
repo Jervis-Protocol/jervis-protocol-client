@@ -32,7 +32,7 @@ export const ON_RESEND_AUTH_NUMBER_REQUEST = "edit/ON_RESEND_AUTH_NUMBER_REQUEST
 export const ON_RESEND_AUTH_NUMBER_SUCCESS = "edit/ON_RESEND_AUTH_NUMBER_SUCCESS" as const;
 export const ON_RESEND_AUTH_NUMBER_FAILURE = "edit/ON_RESEND_AUTH_NUMBER_FAILURE" as const;
 
-export const onChangeNicknameAction = createAsyncAction(ON_CHANGE_NICKNAME_REQUEST, ON_CHANGE_NICKNAME_SUCCESS, ON_CHANGE_NICKNAME_FAILURE)<string, IValid, AxiosError>();
+export const onChangeNicknameAction = createAsyncAction(ON_CHANGE_NICKNAME_REQUEST, ON_CHANGE_NICKNAME_SUCCESS, ON_CHANGE_NICKNAME_FAILURE)<string, IValid, any>();
 export const onChangeImageAction = createAsyncAction(ON_CHANGE_IMAGE_REQUEST, ON_CHANGE_IMAGE_SUCCESS, ON_CHANGE_IMAGE_FAILURE)<File, string, AxiosError>();
 export const onEditSubmitAction = createAsyncAction(ON_EDIT_SUBMIT_REQUEST, ON_EDIT_SUBMIT_SUCCESS, ON_EDIT_SUBMIT_FAILURE)<IEditSubmitParams, IUser, AxiosError>();
 export const onChangeDescriptionAction = createAction(ON_CHANGE_DESCRIPTION)<string>();

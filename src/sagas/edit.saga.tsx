@@ -31,8 +31,7 @@ import {IUser} from "../type/_data/user.type";
 
 function* onChangeNicknameSaga(_action: ReturnType<typeof onChangeNicknameAction.request>) {
     try {
-        const valid: boolean = yield call(onChangeNickname, _action.payload);
-        yield put(onChangeNicknameAction.success({input: _action.payload, error: valid}));
+        yield put(onChangeNicknameAction.success({input: _action.payload}));
     } catch (e: any) {
         yield put(onChangeNicknameAction.failure(e));
     }
@@ -101,6 +100,11 @@ function* onResendAuthNumberSaga(_action: ReturnType<typeof onResendAuthNumberAc
 
 function* onEditSubmitSaga(_action: ReturnType<typeof onEditSubmitAction.request>) {
     try {
+        const valid: boolean = yield call(onChangeNickname, _action.payload.user.nickname);
+        if (!valid) {
+            yield put(onChangeNicknameAction.failure({message: "닉네임을 다시 확인해주세요."}));
+            return;
+        }
         yield put(onToggleLoadingModal(true));
         const user: IUser = yield call(onEditSubmit, _action.payload.user);
         yield put(onChangeNoticeMessageAction("정보 수정이 완료되었습니다."));
