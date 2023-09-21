@@ -17,8 +17,6 @@ import {onGetUserAction, onSetNetworkListenerAction} from "../action/header.acti
 
 function* onConnectSaga(_action: ReturnType<typeof onConnectAction.request>) {
     try {
-        console.log(_action.payload)
-        console.log(import.meta.env.VITE_APP_POLYGON_NETWORKID)
         yield put(onToggleLoadingModal(true));
         yield call(onChangeNetwork, _action.payload);
         const walletAuth: IWalletAuth = yield call(onConnect, _action.payload);

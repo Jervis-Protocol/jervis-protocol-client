@@ -53,7 +53,6 @@ const setNFTValud = (funding: IInputFunding) => {
 
 const onDeployBlockChain = async (funding: IInputFunding, contractInfo: IFundingFactory) => {
     await provider().enable();
-    console.log("ContractInfo: ", contractInfo);
 
     const eProvider = new ethers.BrowserProvider(provider());
     const signer = await eProvider.getSigner();
@@ -61,14 +60,11 @@ const onDeployBlockChain = async (funding: IInputFunding, contractInfo: IFunding
     const transaction = await contract.createFunding(funding.goal, new Date(funding.sdate!).getTime() / 1000, new Date(funding.edate!).getTime() / 1000, getNFTPrice(funding.nfts!), getNFTAmount(funding.nfts!), getNFTURI(funding.nfts!), funding.title, funding.symbol!);
     // const transaction = await setTransaction(funding, factory);
     // const web3 = new Web3(provider());
-    console.log("transaction: ", transaction);
     const receipts = await transaction.wait();
-    console.log("receipt: ", receipts);
     const fundingInterface = new ethers.Interface(ABI);
 
     const eventLog = receipts.logs?.find((log: any) => log.topics[0] === CREATE_EVENT);
     const log = fundingInterface.parseLog(eventLog!);
-    console.log("log: ", log);
     return log!.args[1];
 }
 

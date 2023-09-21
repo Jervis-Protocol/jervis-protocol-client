@@ -55,7 +55,6 @@ function* onGetFundingNFTSaga(_action: ReturnType<typeof onGetFundingNFTAction.r
 
 function* onGetFundingStorySaga(_action: ReturnType<typeof onGetFundingStoryAction.request>) {
     try {
-        console.log(_action.payload);
         const story: string = yield call(onGetFundingStory, _action.payload);
         yield put(onGetFundingStoryAction.success(story));
     } catch (e: any) {
@@ -79,7 +78,6 @@ function* onGetAbiSaga(_action: ReturnType<typeof onGetABIAction.request>) {
         yield put(onToggleDonationModalAction());
         const abi: Array<AbiItem> = yield call(onGetAbi);
         _action.payload.abi = abi;
-        console.log('GetAbi: ', abi);
         yield put(onGetABIAction.success(abi));
         yield put(onSendDonationAction.request(_action.payload));
     } catch (e: any) {
@@ -92,10 +90,7 @@ function* onGetAbiSaga(_action: ReturnType<typeof onGetABIAction.request>) {
 
 function* onSendDonationSaga(_action: ReturnType<typeof onSendDonationAction.request >) {
     try {
-        console.log('GetAbi: ', _action.payload);
-
         const history: IInputHistory = yield call(onSendDonation, _action.payload);
-        console.log(history);
         yield put(onSendDonationAction.success(history));
         yield put(onInsertHistoryAction.request({ history: {
             funding: _action.payload.funding._id,

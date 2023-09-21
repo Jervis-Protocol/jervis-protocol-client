@@ -25,7 +25,6 @@ const onConnectKlaytn = async (networkId: number): Promise<IWalletAuth> => {
 
     // @ts-ignore
     const signedMessage = await caver.klay.sign(message, window.klaytn.selectedAddress);
-    console.log(signedMessage)
     // @ts-ignore
     return { networkId: networkId, address: window.klaytn.selectedAddress.toLowerCase(), sign: signedMessage };
 }
@@ -34,22 +33,15 @@ const onConnectKlaytn = async (networkId: number): Promise<IWalletAuth> => {
 
 const onConnectMetamask = async (networkId: number): Promise<IWalletAuth> => {
     const account = await requestAccount();
-    console.log("account:", account);
     // @ts-ignore
     await provider().enable();
-    console.log("enable complete");
     // @ts-ignore
     const web3 = new Web3(provider());
-    console.log("web3:", web3);
     const message = getMetamaskAuthMessage(networkId);
-    console.log("message:", message);
     // @ts-ignore
     const address = await requestAccount();
-    console.log("address:", address);
     // @ts-ignore
     const signedMessage = await provider().request({method: 'eth_signTypedData_v4', params: [address, message]})
-
-    console.log(signedMessage);
 
     return { networkId: networkId, address: address.toLowerCase(), sign: signedMessage };
 }

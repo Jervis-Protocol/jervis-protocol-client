@@ -18,7 +18,6 @@ const FundingStickyComponent = () => {
         const newSDate = new Date(sDate);
         const nowDate = new Date();
         const newEDate = new Date(eDate);
-        console.log(newSDate.getTime(), nowDate.getTime());
 
         if (newSDate.getTime() > nowDate.getTime())
             return ;

@@ -26,7 +26,6 @@ const SearchFilterState = () => {
             dispatch(onChangeStateAction(query.get('state')!))
     }, [])
 
-    console.log(state);
 
     return (
         <div className="accordion-item">

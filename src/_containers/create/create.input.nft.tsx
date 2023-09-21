@@ -27,12 +27,10 @@ const CreateInputNft = () => {
         setValue('image', '');
         setValue('price', undefined);
         setValue('max', undefined)
-        console.log(data);
     };
 
     useEffect(() => setValue('image', nftImage ? nftImage : ''), [nftImage])
 
-    console.log(errors)
 
     return (
         <div className="col-12 p-4 mb-4 border rounded-4" data-aos="fade-up" data-aos-delay={700}>

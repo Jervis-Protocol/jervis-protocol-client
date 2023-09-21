@@ -18,7 +18,6 @@ function* onDataProcessingSaga(_action: ReturnType<typeof onDataProcessingAction
     try {
         yield put(onToggleLoadingModal(true));
         const funding: IInputFunding = yield call(onDataProcessing, _action.payload.funding);
-        console.log(funding);
         yield put(onDataProcessingAction.success(funding));
         yield put(onGetFactoryAction.request({funding: funding, networkId: _action.payload.networkId, navigator: _action.payload.navigator}));
     } catch (e: any) {

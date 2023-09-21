@@ -14,7 +14,6 @@ const ProfileContainer = () => {
     const {user} = useSelector((state: RootState) => state.ProfileReducer);
     const header = useSelector((state: RootState) => state.HeaderReducer);
     useEffect(() => {
-        console.log(state);
         dispatch(onGetUserAction.request({networkId: parseInt(state.networkId), address: state.address}));
     }, [])
     useEffect(() => {

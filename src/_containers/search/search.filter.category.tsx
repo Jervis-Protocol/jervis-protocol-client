@@ -19,7 +19,6 @@ const SearchFilterCategory = () => {
             query.append('category', index.toString());
 
 
-        console.log(query.toString())
         navi(`/search?${query.toString()}`);
         dispatch(onGetFundingAction.request({ query: query.toString(), pageIndex: 0 }));
     }

@@ -8,7 +8,6 @@ export type IHomeInfoCardState = {
 const HomeInfoCard = (state: IHomeInfoCardState) => {
     const { funding } = state;
 
-    console.log(funding);
     return (
         <div className="col-lg-6 col-md-9 ms-lg-auto" data-aos="fade-left" data-aos-delay="200">
             <div className="position-relative ps-lg-9 pb-lg-5">
