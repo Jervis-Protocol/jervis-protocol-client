@@ -16,6 +16,7 @@ const HomePopularComponent = () => {
                     <HomePopularNavi />
                 </div>
             </div>
+
         </section>
     )
 }

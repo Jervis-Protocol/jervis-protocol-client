@@ -1,8 +1,6 @@
 import useScript from "../../helper/useScript.tsx";
 
 const HomePopularNavi = () => {
-    useScript("/assets/js/home.js");
-
     return (
         <div className="position-relative align-items-center d-flex justify-content-center">
             <div className="swiper-prev size-3 rounded-pill d-flex align-items-center justify-content-center btn btn-outline-primary position-static m-0">
