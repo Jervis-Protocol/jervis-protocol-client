@@ -35,7 +35,6 @@ function* onUploadBackgroundImageSaga(_action: ReturnType<typeof onUploadBackgro
 function* onUploadNFTImageSaga(_action: ReturnType<typeof onUploadNFTImageAction.request>) {
     try {
         if (_action.payload === undefined) return;
-        console.log("import.meta.env.VITE_APP_NODE_ENV: ", import.meta.env.VITE_APP_NODE_ENV);
         const imageURL: string = yield call(nftImageUpload, _action.payload);
         yield put(onUploadNFTImageAction.success(imageURL));
     } catch (e: any) {
