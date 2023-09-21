@@ -9,11 +9,12 @@ import {
     onUploadStoryImageAction
 } from "../action/create.action";
 import {call, put, takeLatest} from "redux-saga/effects";
-import {fileUpload, validationInput} from "../service/create.service";
+import {fileUpload, nftImageUpload, validationInput} from "../service/create.service";
 import {onChangeNoticeMessageAction, onToggleNoticeModalAction} from "../action/modal.action";
 
 function* onUploadStoryImageSaga(_action: ReturnType<typeof onUploadStoryImageAction.request>) {
     try {
+        if (_action.payload === undefined) return;
         const imageURL: string = yield call(fileUpload, _action.payload);
         yield put(onUploadStoryImageAction.success(imageURL));
     } catch (e: any) {
@@ -23,6 +24,7 @@ function* onUploadStoryImageSaga(_action: ReturnType<typeof onUploadStoryImageAc
 
 function* onUploadBackgroundImageSaga(_action: ReturnType<typeof onUploadBackgroundImageAction.request>) {
     try {
+        if (_action.payload === undefined) return;
         const imageURL: string = yield call(fileUpload, _action.payload);
         yield put(onUploadBackgroundImageAction.success(imageURL));
     } catch (e: any) {
@@ -32,7 +34,9 @@ function* onUploadBackgroundImageSaga(_action: ReturnType<typeof onUploadBackgro
 
 function* onUploadNFTImageSaga(_action: ReturnType<typeof onUploadNFTImageAction.request>) {
     try {
-        const imageURL: string = yield call(fileUpload, _action.payload);
+        if (_action.payload === undefined) return;
+        console.log("import.meta.env.VITE_APP_NODE_ENV: ", import.meta.env.VITE_APP_NODE_ENV);
+        const imageURL: string = yield call(nftImageUpload, _action.payload);
         yield put(onUploadNFTImageAction.success(imageURL));
     } catch (e: any) {
         yield put(onUploadNFTImageAction.failure(e));
